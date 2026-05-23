@@ -1,4 +1,6 @@
-# pi zero audio
+# pi zero audio 
+currently called Jambula.
+formerly called Commando, Herbert
 
 ## setup:
 - setup the venv `python -m venv .venv`
