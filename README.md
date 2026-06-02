@@ -4,6 +4,7 @@ formerly called Commando, Herbert
 
 ## setup:
 - setup the venv `python -m venv .venv`
+- activate the venv if you're using SSH / not using vscode `source venv/bin/activate`
 - install `client_requirements.txt` for client, `server_requirements.txt` for server, and both if you're testing.
 
 ## usage:
@@ -30,3 +31,4 @@ get audio response from server:
 - get back response when server sends it
 - save the response to local file
 - ✅ `v1` play audio response
+
