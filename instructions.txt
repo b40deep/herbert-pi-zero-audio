@@ -1,0 +1,20 @@
+vscode won't work 
+so we'll have to pull the code updates manually via terminal 
+rather than a simple button in vscode.
+
+go to the herbert repo
+	cd Desktop/repos/herbert-pi-zero-audio/
+then pull the latest changes
+	git pull
+then done.
+
+
+For first time, do the setup by following the README. 
+set up both the client and the server.
+then run the server, and then the client.
+then done.
+
+to push new code, do:
+	git add .
+	git commit -m "message"
+	git push
