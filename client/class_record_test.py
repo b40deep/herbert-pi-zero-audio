@@ -2,16 +2,19 @@ import pyaudio
 import wave
 import sys
 import numpy as np
+from datetime import datetime
+import os
 
 class AudioRecorder:
     def __init__(self,
-                 sample_rate=48000,
+                 sample_rate=16000,
                  channels=1,
-                 chunk=1024,
+                 chunk=2048,
                  record_seconds=5,
                  format=pyaudio.paInt16,
                  device_index=None,
-                 filename="voicehat_recording.wav"):
+                 filename="voicehat_recording.wav",
+                 rec_folder="rec"):
 
         self.sample_rate = sample_rate
         self.channels = channels
@@ -20,6 +23,7 @@ class AudioRecorder:
         self.format = format
         self.device_index = device_index
         self.filename = filename
+        self.rec_folder = rec_folder
 
         self.audio = pyaudio.PyAudio()
         self.stream = None
@@ -102,6 +106,8 @@ class AudioRecorder:
             print(f"❌ Failed to apply gain: {e}")
 
     def save_to_file(self):
+        date = datetime.now()
+        self.filename:str = os.path.join(self.rec_folder,f"vox_{date.strftime("%Y%b%d_%H-%M-%S")}.wav")
         try:
             with wave.open(self.filename, 'wb') as wf:
                 wf.setnchannels(self.channels)
@@ -133,7 +139,9 @@ if __name__ == "__main__":
             sys.exit(1)
 
     recorder.open_stream()
+    start = datetime.now()
     recorder.record()
+    print(datetime.now() - start)
     recorder.apply_gain(gain=4.0)  # 🔊 Increase volume and print RMS
     recorder.save_to_file()
     recorder.cleanup()
