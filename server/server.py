@@ -7,7 +7,7 @@ import nemo.collections.asr as nemo_asr
 
 app = FastAPI()
 
-# This class loads the model ONCE when the API server starts
+# Might move this class back to stt.py later, since uvicorn reloads the server on code changes and we don't want to reload the model every time. For now, it's here for simplicity.
 class STTServer:
     def __init__(self):
         self.model = nemo_asr.models.ASRModel.from_pretrained(
