@@ -25,7 +25,7 @@ async def get():
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    print("SELF:   WebSocket connection established.")
+    print("SERVER:   WebSocket connection established.")
     try:
         # Generate a unique filename for the received file
         filename = f"received_files/{uuid.uuid4().hex}.wav"
@@ -36,12 +36,12 @@ async def websocket_endpoint(websocket: WebSocket):
                 if not data:
                     break
                 f.write(data)
-                print(f"SELF:   File received and saved as {filename}")
-                await websocket.send_text(f"File saved as {filename}")
+                print(f"SERVER:   File chunk received and saved under {filename}")
+                await websocket.send_text(f"File chunk saved under {filename}")
     except WebSocketDisconnect as exc:
-            print(f"SELF:   WebSocketDisconnect: code={exc.code}, reason='{exc.reason}'")
+            print(f"SERVER:   WebSocketDisconnect: code={exc.code}, reason='{exc.reason}'")
     except Exception as e:
-        print(f"SELF:   Error: {e}")
+        print(f"SERVER:   Error: {e}")
         await websocket.send_text(f"Error: {str(e)}")
     finally:
-        print("SELF:   WebSocket connection closed.")
+        print("SERVER:   WebSocket connection closed.")
