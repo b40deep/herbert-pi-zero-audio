@@ -5,9 +5,12 @@ formerly called Commando, Herbert
 ## setup:
 - setup the venv `python -m venv .venv`
 - activate the venv if you're using SSH / not using vscode `source venv/bin/activate`
-- for raspbelly pie, PyAudio is tricky sometimes because it has to build wheels which fail if deps aren't available. try installing this first OUTSIDE of the venv `sudo apt-get install portaudio19-dev`.
+- client requirements:
+  - for raspbelly pie, PyAudio is tricky sometimes because it has to build wheels which fail if deps aren't available. try installing this first OUTSIDE of the venv `sudo apt-get install portaudio19-dev`.
   - then you can install pyaudio properly `pip install pyaudio`.
-- install `client_requirements.txt` for client, `server_requirements.txt` for server, and both if you're testing.
+  - do `pip install -r client_requirements.txt` for client (and for server too, if you're testing both).
+- server requirements:
+  - do `pip install -r server_requirements.txt` for server.
 
 ## usage:
 - `check_sample_rate.py` checks the sample rate that the microphone you have can record at. so that when you record with `class_record_test.py`, you can specify a sample rate that works within that code.
