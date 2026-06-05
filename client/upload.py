@@ -42,7 +42,7 @@ async def send_wav_file():
                 except Exception:
                     pass
         print("CLIENT:   Finished sending file. Closing connection.")
-        # await websocket.close()
+        await websocket.close()
 
 
 if __name__ == "__main__":

@@ -2,8 +2,28 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 import os
 import uuid
+import nemo.collections.asr as nemo_asr
+
 
 app = FastAPI()
+
+# This class loads the model ONCE when the API server starts
+class STTServer:
+    def __init__(self):
+        self.model = nemo_asr.models.ASRModel.from_pretrained(
+            model_name="nvidia/parakeet-tdt-0.6b-v3"
+        )
+
+    def get_text_from_audio(self, path:str)->str:
+        output = self.model.transcribe([path])
+        if isinstance(output, list) and len(output) > 0:
+            if hasattr(output[0], 'text'):
+                return output[0].text
+            return output[0]
+        return "Error. Transcription failed."
+
+# Initialize the model globally
+stt_service = STTServer()
 
 # Set base path to directory of this script
 BASE_PATH:str = os.path.dirname(os.path.abspath(__file__))
@@ -26,20 +46,22 @@ async def get():
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     print("SERVER:   WebSocket connection established.")
+    # Generate a unique filename for the received file
+    filepath = f"received_files/{uuid.uuid4().hex}.wav"
+    f = open(filepath, "wb")
     try:
-        # Generate a unique filename for the received file
-        filename = f"received_files/{uuid.uuid4().hex}.wav"
-        with open(filename, "wb") as f:
-            while True:
-                # Receive binary data from the client
-                data = await websocket.receive_bytes()
-                if not data:
-                    break
-                f.write(data)
-                print(f"SERVER:   File chunk received and saved under {filename}")
-                await websocket.send_text(f"File chunk saved under {filename}")
+        while True:
+            data = await websocket.receive_bytes()
+            f.write(data)
+            print(f"SERVER:   Received chunk for {filepath}")
+            await websocket.send_text("Chunk received")
+
     except WebSocketDisconnect as exc:
-            print(f"SERVER:   WebSocketDisconnect: code={exc.code}, reason='{exc.reason}'")
+        print("SERVER:   Client finished sending file.")
+        # 👉 File is fully transferred here — process it now
+        intent:str = stt_service.get_text_from_audio(filepath)
+        print(f"SERVER:   Transcription result: '{intent}'")
+        print(f"SERVER:   WebSocketDisconnect: code={exc.code}, reason='{exc.reason}'")
     except Exception as e:
         print(f"SERVER:   Error: {e}")
         await websocket.send_text(f"Error: {str(e)}")
