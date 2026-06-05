@@ -19,7 +19,7 @@ formerly called Commando, Herbert
 
 
 #### for development:
-- `uvicorn server.server:app --reload` to load the server
+- `uvicorn server.server:app --reload` to load the server. Update: to listen widely, we'll use `uvicorn server.server:app --reload --host 0.0.0.0 --port 8000`
 - `python ./client/upload.py` to test uploading to the server
 
 ## todo:

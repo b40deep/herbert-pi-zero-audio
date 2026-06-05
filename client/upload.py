@@ -5,6 +5,7 @@ import os
 
 # Ensure the server is running at http://localhost:8000
 SERVER_URL:str = "ws://localhost:8000/ws"
+SERVER_URL:str = "ws://192.168.137.1:8000/ws"
 
 # Set base path to directory of this script
 BASE_PATH:str = os.path.dirname(os.path.abspath(__file__))
