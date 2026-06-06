@@ -25,7 +25,8 @@ formerly called Commando, Herbert
 
 ## todo:
 get audio from mic:
-- button press to record audio
+- button press to record audio 
+  - added to `client/main_record_upload.py` not yet tested until I solder on the btn and led.
 - ✅ `v1` record audio to local file
 
 send audio to server:
@@ -37,4 +38,7 @@ get audio response from server:
 - get back response when server sends it
 - save the response to local file
 - ✅ `v1` play audio response
+- alternative: use TTS engine on the Zero2W to play text sent from the server.
+  - i've created `client/playback_text.py` to do that using SystemEngine (apprnly espeak on Linux). 
+  - need to first solder on the DAC/AMP and then will test this.
 
