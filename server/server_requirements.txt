@@ -6,3 +6,7 @@ websockets
 # for parakeet
 nemo_toolkit[asr] # @ git+https://github.com/NVIDIA/NeMo.git@main
 hf_xet # for faster download of the model
+
+# for LLM
+ollama
+python-dotenv

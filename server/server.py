@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 import os
 import uuid
 import nemo.collections.asr as nemo_asr
-
+from to_llm import llm_generate
 
 # app = FastAPI()
 
@@ -78,6 +78,10 @@ async def websocket_endpoint(websocket: WebSocket):
         intent:str = "Transcription failed."
         intent:str = stt_service.get_text_from_audio(filepath) 
         print(f"SERVER:   Transcription result: '{intent}'")
+        # make an LLM call
+        print(f"SERVER:   LLM request result'")
+        llm_res:str = llm_generate(prompt=intent)
+        print(f"SERVER:   LLM result: '{llm_res}'")
         print(f"SERVER:   WebSocketDisconnect: code={exc.code}, reason='{exc.reason}'")
     except Exception as e:
         print(f"SERVER:   Error: {e}")
