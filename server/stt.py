@@ -10,5 +10,8 @@ class STTServer:
         output = self.model.transcribe([path])
         return output[0].text
 
-stt = STTServer()
-print(stt.transcribe("server/2086-149220-0033.wav"))
+if __name__ == "__main__":
+    print("Loading STTServer")
+    stt = STTServer()
+    # print(stt.transcribe("server/2086-149220-0033.wav"))
+    print("Loading STTServer: DONE")

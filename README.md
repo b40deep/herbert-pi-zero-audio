@@ -19,8 +19,9 @@ formerly called Commando, Herbert
 
 
 #### for development:
-- `uvicorn server.server:app --reload` to load the server. Update: to listen widely, we'll use `uvicorn server.server:app --reload --host 0.0.0.0 --port 8000`
-- `python ./client/upload.py` to test uploading to the server
+- Update: `python ./server/server.py` to load the server. I've passed all the parameters (reload, host, and port) inside the code itself.
+  - [old] to listen widely, we'll use `uvicorn server.server:app --reload --host 0.0.0.0 --port 8000`
+- `python ./client/upload.py` to test uploading from the client to the server
 
 ## todo:
 get audio from mic:
