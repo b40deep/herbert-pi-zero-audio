@@ -1,5 +1,5 @@
-numpy==2.2.6
-PyAudio==0.2.14
+numpy #==2.2.6
+PyAudio #==0.2.14
 websockets
 # gpiozero comes default installed
 realtimetts[system]
