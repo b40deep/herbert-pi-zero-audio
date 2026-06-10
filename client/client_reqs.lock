@@ -1,5 +1,11 @@
-numpy #==2.2.6
-PyAudio #==0.2.14
+numpy ==2.2.6
+PyAudio ==0.2.14
 websockets
+
 # gpiozero comes default installed
-realtimetts[system]
+
+# realtimetts[system] i think this was downloading cuda torch which I can't run on my Zero2W
+
+# TTS - small but mighty, apprnly. let's try it out.
+# but it doesn't work on Python 3.13. So I need a lower version.
+https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl

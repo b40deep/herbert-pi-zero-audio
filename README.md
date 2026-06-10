@@ -2,7 +2,37 @@
 currently called Jambula.
 formerly called Commando, Herbert
 
-## setup:
+## pi setup
+- if using the full-fat raspbian which comes with GUI, then enable VNC:
+  - `ssh username@IPAdress` 
+  - then `sudo raspi-config` > interface options > enable VNC > finish
+
+## git setup
+- vscode won't work so we'll have to pull the code updates manually via terminal rather than a simple button in vscode.
+- to set up git and github (gh):
+  - `sudo apt install git -y` if it's not already on
+  - then `git config --global user.name "raspbelly"`
+  - then `git config --global user.email "raspbelly@belly.bell"`
+  - then `ssh-keygen -t ed25519 -C "raspbelly@belly.bell"`
+  - then `cat ~/.ssh/id_ed25519.pub`
+  - then go to `https://github.com/settings/keys` and create a new SSH key. Paste in the public key including the `ssh-ed25519 ` prefix. 
+  - then you're good to go. [ref](https://medium.com/@thedyslexiccoder/installing-github-on-a-raspberry-pi-4-44a1ca04a558)
+- go to the herbert repo
+  - `cd Desktop` then clone it if you don't have it. `git clone https://github.com/b40deep/herbert-pi-zero-audio.git`
+  - then `cd herbert-pi-zero-audio/`
+  - then pull the latest changes whenever you push them from another device
+  - `git pull`
+  - then done.
+- For first time, do the setup by following this README.
+  - set up both the client and the server.
+  - then run the server [first, so models can load], and then the client.
+  - then done.
+- to push new code, do:
+	- `git add .`
+	- `git commit -m "message"`
+	- `git push`
+
+## repo setup:
 - setup the venv `python -m venv .venv`
 - activate the venv if you're using SSH / not using vscode `source venv/bin/activate`
 - client requirements:
