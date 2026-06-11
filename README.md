@@ -6,6 +6,8 @@ formerly called Commando, Herbert
 - if using the full-fat raspbian which comes with GUI, then enable VNC:
   - `ssh username@IPAdress` 
   - then `sudo raspi-config` > interface options > enable VNC > finish
+- increase swap:
+  - depending on your OS, you'll need to do something different. see [here](https://pimylifeup.com/raspberry-pi-swap-file/) for details.
 
 ## git setup
 - vscode won't work so we'll have to pull the code updates manually via terminal rather than a simple button in vscode.
@@ -36,7 +38,7 @@ formerly called Commando, Herbert
 - setup the venv `python -m venv .venv`
 - activate the venv if you're using SSH / not using vscode `source venv/bin/activate`
 - client requirements:
-  - for raspbelly pie, PyAudio is tricky sometimes because it has to build wheels which fail if deps aren't available. try installing this first OUTSIDE of the venv `sudo apt-get install portaudio19-dev`.
+  - for raspbelly pie, PyAudio is tricky sometimes because it has to build wheels which fail if deps aren't available. try installing this first OUTSIDE of the venv `sudo apt-get install portaudio19-dev`. You might also need `libportaudio2` and `espeak-ng`. But start with portaudio alone.
   - then you can install pyaudio properly `pip install pyaudio`.
   - do `pip install -r client_requirements.txt` for client (and for server too, if you're testing both).
 - server requirements:

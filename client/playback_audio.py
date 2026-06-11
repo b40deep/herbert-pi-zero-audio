@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 
-def play_audio(audio_path):
+def play_audio(audio_path:str)-> None:
     """Play a WAV audio file."""
     try:
         wf = wave.open(audio_path, 'rb')

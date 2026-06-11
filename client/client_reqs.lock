@@ -8,4 +8,10 @@ websockets
 
 # TTS - small but mighty, apprnly. let's try it out.
 # but it doesn't work on Python 3.13. So I need a lower version.
-https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl
+# had trouble getting kittentts to install. it needs torch and a million other small things. they somehow keep fialing.
+# the latest error is ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE. and that's me dong nothing but installing this one line below as the github said...
+# https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl
+
+# going to try Piper for now
+piper-tts
+# sounddevice if you want. I'm using pyaudio i think
