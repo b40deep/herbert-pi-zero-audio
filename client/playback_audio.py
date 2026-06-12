@@ -16,6 +16,8 @@ def play_audio(audio_path:str)-> None:
         print(f"▶️ Playing '{audio_path}'...")
 
         chunk = 1024
+        # Start with silence to avoid cutting off the beginning. might not help.
+        stream.write(b'\x00' * chunk * 2)  
         data = wf.readframes(chunk)
 
         while data:

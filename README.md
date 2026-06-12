@@ -8,6 +8,14 @@ formerly called Commando, Herbert
   - then `sudo raspi-config` > interface options > enable VNC > finish
 - increase swap:
   - depending on your OS, you'll need to do something different. see [here](https://pimylifeup.com/raspberry-pi-swap-file/) for details.
+- disable wifi power-saving which is [enabled by default](https://raspberrypi.stackexchange.com/questions/96606/make-iw-wlan0-set-power-save-off-permanent)
+  - ``` bash
+    $ sudo crontab -e
+    # which opens the root crontab in your chosen editor...
+    # add the following line at the bottom of the root crontab:
+    @reboot /usr/sbin/iw wlan0 set power_save off > /home/<user>/power_save_log.txt 2>&1
+    # be sure to substitute a valid folder name for '<user>' in the line above
+    ```
 
 ## git setup
 - vscode won't work so we'll have to pull the code updates manually via terminal rather than a simple button in vscode.

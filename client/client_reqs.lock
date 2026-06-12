@@ -12,6 +12,7 @@ websockets
 # the latest error is ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE. and that's me dong nothing but installing this one line below as the github said...
 # https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl
 # will try this next >> https://github.com/KittenML/KittenTTS.git << pulling the repo and installing manually. It seems the issue is that it tries to install requirements_gpu instead of the default requirements. that's why it always crashes somewhere in torch-land. it might be more expressive than piper if it works. then i can check ram footprint later, after hearing audio quality.
+# failed again. install successful but model crashing my pi02w. idk why. i'll just stick to piper for now.
 
 # going to try Piper for now
 piper-tts
