@@ -2,7 +2,7 @@ numpy ==2.2.6
 PyAudio ==0.2.14
 websockets
 
-# gpiozero comes default installed
+gpiozero # comes default installed, mine didn't
 
 # realtimetts[system] i think this was downloading cuda torch which I can't run on my Zero2W
 
