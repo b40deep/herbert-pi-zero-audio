@@ -3,6 +3,9 @@ PyAudio ==0.2.14
 websockets
 
 gpiozero # comes default installed, mine didn't
+# gpiozero needs these to run
+lgpio
+pigpio
 
 # realtimetts[system] i think this was downloading cuda torch which I can't run on my Zero2W
 

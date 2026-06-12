@@ -6,6 +6,8 @@ from datetime import datetime
 import os
 from gpiozero import Button, LED
 from signal import pause
+import asyncio
+from upload import set_filepath_to_upload, send_wav_file
 
 
 BUTTON_PIN = 17
@@ -162,6 +164,7 @@ if __name__ == "__main__":
         led.off()
         recorder.apply_gain(4.0)
         recorder.save_to_file()
+        
         print("Ready for next recording…")
 
     button.when_pressed = start_recording

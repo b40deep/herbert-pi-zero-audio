@@ -14,6 +14,11 @@ os.chdir(BASE_PATH)
 # File to upload (must be in the same directory as this script)
 FILENAME:str = "rec/voicehat_recording.wav"
 
+def set_filepath_to_upload(filename:str) -> None:
+    global FILENAME
+    FILENAME = filename
+    print("CLIENT:   Filepath set to:", FILENAME)
+
 def upload_file(audio_file_path:str) -> str:
     """Uploads an audio file to the server and returns the server's response."""
     with open(audio_file_path, "rb") as f:
@@ -22,10 +27,10 @@ def upload_file(audio_file_path:str) -> str:
         print("SERVER:   Server response:", response.text)
     return response.text
 
-async def send_wav_file():
+async def send_wav_file()-> bool:
     if not os.path.exists(FILENAME):
         print(f"CLIENT:   File {FILENAME} not found.")
-        return
+        return True
 
     async with websockets.connect(SERVER_URL) as websocket:
         print("CLIENT:   Connected to server.")
@@ -43,6 +48,7 @@ async def send_wav_file():
                     pass
         print("CLIENT:   Finished sending file. Closing connection.")
         await websocket.close()
+        return True
 
 
 if __name__ == "__main__":
