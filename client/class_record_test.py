@@ -107,6 +107,8 @@ class AudioRecorder:
 
     def save_to_file(self):
         date = datetime.now()
+        # Create recording directory if needed
+        os.makedirs(self.rec_folder, exist_ok=True)
         self.filename:str = os.path.join(self.rec_folder,f"vox_{date.strftime('%Y%b%d_%H-%M-%S')}.wav")
         try:
             with wave.open(self.filename, 'wb') as wf:
