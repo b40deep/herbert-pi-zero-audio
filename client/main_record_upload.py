@@ -23,7 +23,7 @@ class AudioRecorder:
                  format=pyaudio.paInt16,
                  device_index=None,
                  filename="voicehat_recording.wav",
-                 rec_folder="rec"):
+                 rec_folder=os.path.join(os.getcwd(),"rec")):
 
         self.sample_rate = sample_rate
         self.channels = channels
