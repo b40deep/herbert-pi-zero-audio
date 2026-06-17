@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+import os
 
 def play_audio(audio_path:str)-> None:
     """Play a WAV audio file."""
@@ -37,7 +38,7 @@ def play_audio(audio_path:str)-> None:
 
 # 🎧 Example Usage
 if __name__ == "__main__":
-    audio_path = "voicehat_recording.wav"
+    audio_path = os.path.join(os.getcwd(),"client","rec","voicehat_recording.wav")
     play_audio(audio_path)
 
 # end
