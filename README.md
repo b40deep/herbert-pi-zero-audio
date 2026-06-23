@@ -4,12 +4,15 @@ formerly called Commando, Herbert
 
 ## sound options
 this is I think the biggest nag on this whole project. I have found 3 options so far:
-+ i2s amp [what i'm using currently - the max98357a]
++ i2s amp (what i'm using currently - the max98357a)
   - has startup pops, and pops at the start and end of playback. it's annoying enough to not be practical.
+  - if you have the expertise to identify who is running sound on your Pi (alsa, pyaudio, etc) and then turn off their power-saving, you can ensure no pops during Pi usage. For the startup pop, you might have to turn off gpio until the boot is done, to avoid digital noise going to the amp and causing the pops during the boot process.
 + simple filter circuit & pam8493 amp 
   - similar to the i2s version, but worse audio overall. I'd built this some time ago.
 + dac board & 8403
   - seen a [guy](https://www.youtube.com/watch?v=7BXO9UfTfYI) do this and thought i'd save money by using cheaper alternatives, but I might end up having to do this.
++ USB sound card: with separate 3.5mm jacks for headphone and microphone
+  - I have one of these so I might just try using this setup, and wiring up a mic from some spoilt headsets I have.
 
 review each option's resultant sound issues.
 
